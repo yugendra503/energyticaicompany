@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,6 @@ const Register = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle input change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,47 +19,33 @@ const Register = () => {
     });
   };
 
-  // Handle register submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
     try {
-      const res = await axios.post(
+      await axios.post(
         "https://backendenergyticai.vercel.app/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
+        formData
       );
 
-      setMessage("✅ Registration successful!");
-      console.log(res.data);
-
-      // Clear form
-      setFormData({
-        name: "",
-        email: "",
-        password: ""
-      });
+      setMessage("✅ Registration successful");
+      setFormData({ name: "", email: "", password: "" });
     } catch (error) {
       setMessage(
-        error.response?.data?.message ||
-          "❌ Registration failed. Try again."
+        error.response?.data?.message || "❌ Registration failed"
       );
-      console.error(error);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={styles.container}>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <h2>Register</h2>
+    <div className="register-container">
+      <form className="register-card" onSubmit={handleSubmit}>
+        <h2>Create Account</h2>
+        <p className="subtitle">Join Energytic AI</p>
 
         <input
           type="text"
@@ -68,7 +54,6 @@ const Register = () => {
           value={formData.name}
           onChange={handleChange}
           required
-          style={styles.input}
         />
 
         <input
@@ -78,7 +63,6 @@ const Register = () => {
           value={formData.email}
           onChange={handleChange}
           required
-          style={styles.input}
         />
 
         <input
@@ -88,14 +72,13 @@ const Register = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          style={styles.input}
         />
 
-        <button type="submit" disabled={loading} style={styles.button}>
+        <button type="submit" disabled={loading}>
           {loading ? "Registering..." : "Register"}
         </button>
 
-        {message && <p style={styles.message}>{message}</p>}
+        {message && <p className="message">{message}</p>}
       </form>
     </div>
   );
