@@ -1,103 +1,103 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./Register.css";
-import registerImg from "../images/register.jpg";
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
 
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const adminRegister = (e) => {
+  // Handle input change
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  // Handle register submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage("");
 
-    axios
-      .post("https://backendenergyticai.vercel.app/register", {
-        name,
-        email,
-        password,
-      })
-      .then(() => {
-        alert("Admin registered successfully");
-        navigate("/login");
-      })
-      .catch(() => {
-        alert("Error registering admin");
+    try {
+      const res = await axios.post(
+        "https://backendenergyticai.vercel.app/register",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      setMessage("✅ Registration successful!");
+      console.log(res.data);
+
+      // Clear form
+      setFormData({
+        name: "",
+        email: "",
+        password: ""
       });
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message ||
+          "❌ Registration failed. Try again."
+      );
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <main>
-   
-      <section className="register-title text-center">
-        <h1>Admin Register</h1>
-      </section>
+    <div style={styles.container}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <h2>Register</h2>
 
-     
-      <section className="register-section py-5">
-        <div className="container">
-          <div className="row align-items-center">
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
 
-        
-            <div className="col-md-6 text-center d-none d-md-block">
-              <img
-                src={registerImg}
-                alt="Register Illustration"
-                className="register-image"
-              />
-            </div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
 
-         
-            <div className="col-md-6">
-              <div className="register-card mx-auto">
-                <form onSubmit={adminRegister} className="register-form">
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      className="form-control"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </div>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          style={styles.input}
+        />
 
-                  <div className="mb-3">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      className="form-control"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
+        <button type="submit" disabled={loading} style={styles.button}>
+          {loading ? "Registering..." : "Register"}
+        </button>
 
-                  <div className="mb-3">
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="form-control"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <button type="submit" className="btn-submit w-100">
-                    Register Admin
-                  </button>
-                </form>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-    </main>
+        {message && <p style={styles.message}>{message}</p>}
+      </form>
+    </div>
   );
 };
 
