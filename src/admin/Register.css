@@ -1,3 +1,4 @@
+
 .register-title {
   text-align: center;
   margin-top: 40px;
@@ -8,27 +9,11 @@
   color: #1f2937;
 }
 
-.register-section {
-  background-color: #f8fafc;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .register-card {
   background: #ffffff;
-  padding: 28px;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  width: 100%;
-  max-width: 420px;
-}
-
-.register-form {
-  background-color: #f1f5f9;
-  padding: 20px;
+  padding: 30px 25px;
   border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .register-card .form-control {
@@ -60,14 +45,48 @@
   box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
 }
 
+@media (max-width: 576px) {
+  .register-card {
+    padding: 25px 18px;
+  }
+}
+.register-form {
+  background-color: #f8fafc; 
+  padding: 25px 20px;
+  border-radius: 12px;
+}
+.register-section {
+  background-color: #f8fafc;
+}
+
+
 .register-image {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
 }
 
-@media (max-width: 576px) {
-  .register-card {
-    padding: 25px 18px;
-  }
+
+.register-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+.register-form {
+  background-color: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+
+.btn-submit {
+  height: 45px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  border: none;
+  color: #ffffff;
+  font-weight: 600;
 }
