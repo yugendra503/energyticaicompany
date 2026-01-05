@@ -90,3 +90,37 @@
   color: #ffffff;
   font-weight: 600;
 }
+
+const styles = {
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    background: "#f4f6f8"
+  },
+  form: {
+    background: "#fff",
+    padding: "30px",
+    borderRadius: "8px",
+    width: "300px",
+    boxShadow: "0 0 10px rgba(0,0,0,0.1)"
+  },
+  input: {
+    width: "100%",
+    padding: "10px",
+    marginBottom: "15px"
+  },
+  button: {
+    width: "100%",
+    padding: "10px",
+    background: "#2563eb",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer"
+  },
+  message: {
+    marginTop: "10px",
+    textAlign: "center"
+  }
+};
