@@ -1,0 +1,71 @@
+
+.login-title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.login-title h1 {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.login-form-section {
+  background-color: #f8fafc;
+}
+
+
+.login-card {
+  background: #ffffff;
+  padding: 28px 24px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.login-form {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.login-form .form-control {
+  height: 45px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.login-form .form-control:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.btn-login {
+  flex: 1;
+  height: 45px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-login:hover {
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
+}
+
+.btn-cancel {
+  flex: 1;
+  height: 45px;
+  border-radius: 8px;
+  background:red;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-cancel:hover {
+  background: red;
+}
+.login-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}

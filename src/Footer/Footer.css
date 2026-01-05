@@ -1,0 +1,18 @@
+.app-footer {
+  background: linear-gradient(135deg, #1b1127, #1f2937);
+  padding: 44px 12px;
+  margin-top: 60px;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 0;
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-content .author {
+  color: #facc15;
+  font-weight: 600;
+}
